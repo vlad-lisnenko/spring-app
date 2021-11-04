@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="musicBean"
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="rockMusic"
+          class="com.lisnenko.springcourse.RockMusic">
+    </bean>
+
+    <bean id="jazzMusic"
           class="com.lisnenko.springcourse.JazzMusic">
+    </bean>
+
+    <bean id="classicalMusic"
+          class="com.lisnenko.springcourse.ClassicalMusic">
     </bean>
 
     <bean id="musicPlayer"
           class="com.lisnenko.springcourse.MusicPlayer" >
-        <property name="music" ref="musicBean"/>
+
+        <property name="musicList">
+                <list>
+                    <ref bean="rockMusic"/>
+                    <ref bean="classicalMusic"/>
+                    <ref bean="jazzMusic"/>
+                </list>
+        </property>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 
 </beans>
