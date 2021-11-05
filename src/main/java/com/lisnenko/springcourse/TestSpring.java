@@ -1,5 +1,7 @@
 package com.lisnenko.springcourse;
 
+
+import com.lisnenko.springcourse.classes.MusicPlayer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
@@ -8,11 +10,8 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        //Music music = context.getBean("musicBean", Music.class);
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        System.out.println("Name: " + musicPlayer.getName());
-        System.out.println("Volume: " + musicPlayer.getVolume() + "%");
-        musicPlayer.playMusicList();
+        musicPlayer.playMusic();
 
         context.close();
     }

@@ -8,32 +8,6 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-    <bean id="rockMusic"
-          class="com.lisnenko.springcourse.RockMusic">
-    </bean>
-
-    <bean id="jazzMusic"
-          class="com.lisnenko.springcourse.JazzMusic">
-    </bean>
-
-    <bean id="classicalMusic"
-          class="com.lisnenko.springcourse.ClassicalMusic">
-    </bean>
-
-    <bean id="musicPlayer"
-          class="com.lisnenko.springcourse.MusicPlayer" >
-
-        <property name="musicList">
-                <list>
-                    <ref bean="rockMusic"/>
-                    <ref bean="classicalMusic"/>
-                    <ref bean="jazzMusic"/>
-                </list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <context:component-scan base-package="com.lisnenko.springcourse.classes"/>
 
 </beans>
