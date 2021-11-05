@@ -1,27 +1,37 @@
 package com.lisnenko.springcourse.classes;
 
-import com.lisnenko.springcourse.interfaces.Music;
+import com.lisnenko.springcourse.classes.genre.ClassicalMusic;
+import com.lisnenko.springcourse.classes.genre.JazzMusic;
+import com.lisnenko.springcourse.classes.genre.MusicGenre;
+import com.lisnenko.springcourse.classes.genre.RockMusic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class MusicPlayer {
-    private final Music music1;
-    private final Music music2;
-    private final Music music3;
+    private final ClassicalMusic classicalMusic;
+    private final RockMusic rockMusic;
+    private final JazzMusic jazzMusic;
 
     @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1,
-                       @Qualifier("classicalMusic") Music music2,
-                       @Qualifier("jazzMusic") Music music3) {
-        this.music1 = music1;
-        this.music2 = music2;
-        this.music3 = music3;
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic, JazzMusic jazzMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
+        this.jazzMusic = jazzMusic;
     }
 
-    public String playMusic() {
-        return "Playing: " + music1.getSong() + ", " + music2.getSong() + ", " + music3.getSong();
+    public void playMusic(MusicGenre genre){
+        Random random = new Random();
+
+        int randomNumber = random.nextInt(3);
+
+        if(genre == MusicGenre.JAZZ)
+            System.out.println("Playing: " + jazzMusic.getSongs().get(randomNumber));
+        else if(genre == MusicGenre.CLASSICAL)
+            System.out.println("Playing: " + classicalMusic.getSongs().get(randomNumber));
+        else System.out.println("Playing: " + rockMusic.getSongs().get(randomNumber));
     }
 
 }

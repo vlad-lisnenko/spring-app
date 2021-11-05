@@ -1,8 +1,8 @@
 package com.lisnenko.springcourse;
 
 
-import com.lisnenko.springcourse.classes.Computer;
 import com.lisnenko.springcourse.classes.MusicPlayer;
+import com.lisnenko.springcourse.classes.genre.MusicGenre;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
@@ -11,10 +11,8 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        musicPlayer.playMusic();
-        Computer computer = context.getBean("computer", Computer.class);
-        System.out.println(computer.toString());
+        MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
+        player.playMusic(MusicGenre.ROCK);
 
         context.close();
     }
