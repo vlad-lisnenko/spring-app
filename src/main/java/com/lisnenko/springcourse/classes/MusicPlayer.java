@@ -19,10 +19,8 @@ public class MusicPlayer {
         this.jazzMusic = jazzMusic;
     }
 
-    public void playMusic() {
-        System.out.println("Playing: " + classicalMusic.getSong());
-        System.out.println("Playing: " + rockMusic.getSong());
-        System.out.println("Playing: " + jazzMusic.getSong());
+    public String playMusic() {
+        return "Playing: " + rockMusic.getSong();
     }
 
 }
