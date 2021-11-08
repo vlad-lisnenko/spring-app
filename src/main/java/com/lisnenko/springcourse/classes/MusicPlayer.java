@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Component
 public class MusicPlayer {
-    private final ClassicalMusic classicalMusic;
-    private final RockMusic rockMusic;
-    private final JazzMusic jazzMusic;
+    private Map<MusicGenre, List<String>> musicGenreListMap = new HashMap<>();
 
     @Value("${musicPlayer.name}")
     private String name;
@@ -33,21 +34,15 @@ public class MusicPlayer {
 
     @Autowired
     public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic, JazzMusic jazzMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
-        this.jazzMusic = jazzMusic;
+        musicGenreListMap.put(MusicGenre.JAZZ, jazzMusic.getSongs());
+        musicGenreListMap.put(MusicGenre.ROCK, rockMusic.getSongs());
+        musicGenreListMap.put(MusicGenre.CLASSICAL, classicalMusic.getSongs());
     }
 
-    public void playMusic(MusicGenre genre){
-        Random random = new Random();
-
-        int randomNumber = random.nextInt(3);
-
-        if(genre == MusicGenre.JAZZ)
-            System.out.println("Playing: " + jazzMusic.getSongs().get(randomNumber));
-        else if(genre == MusicGenre.CLASSICAL)
-            System.out.println("Playing: " + classicalMusic.getSongs().get(randomNumber));
-        else System.out.println("Playing: " + rockMusic.getSongs().get(randomNumber));
+    public String playMusic(){
+        MusicGenre randomGenre = MusicGenre.CLASSICAL.getRandomGenre();
+        return "Playing: " + randomGenre + ": " + musicGenreListMap.get(randomGenre)
+                .get(new Random().nextInt(3));
     }
 
 }

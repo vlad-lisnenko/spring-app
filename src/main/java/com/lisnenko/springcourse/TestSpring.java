@@ -11,13 +11,11 @@ public class TestSpring {
                 SpringConfig.class
         );
 
-//        MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
-//        player.playMusic(MusicGenre.ROCK);
-
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
         System.out.println("Name: " + musicPlayer.getName());
-        System.out.println("volume: " + musicPlayer.getVolume());
+        System.out.println("Volume: " + musicPlayer.getVolume());
+        System.out.println(musicPlayer.playMusic());
 
         context.close();
     }
