@@ -1,4 +1,4 @@
-package com.lisnenko.springcourse.classes;
+package com.lisnenko.springcourse.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

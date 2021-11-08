@@ -2,10 +2,8 @@ package com.lisnenko.springcourse;
 
 
 import com.lisnenko.springcourse.classes.MusicPlayer;
-import com.lisnenko.springcourse.classes.SpringConfig;
-import com.lisnenko.springcourse.classes.genre.MusicGenre;
+import com.lisnenko.springcourse.config.SpringConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
